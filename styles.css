@@ -1,0 +1,161 @@
+/* Theme Variables */
+:root {
+    /* Dark theme (default) */
+    --vscode-bg: #1e1e1e;
+    --vscode-sidebar-bg: #252526;
+    --vscode-titlebar-bg: #3c3c3c;
+    --vscode-text: #d4d4d4;
+    --vscode-accent: #007acc;
+    --vscode-selection: #264f78;
+    --vscode-border: #474747;
+    --vscode-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Light theme */
+[data-theme="light"] {
+    --vscode-bg: #ffffff;
+    --vscode-sidebar-bg: #f3f3f3;
+    --vscode-titlebar-bg: #dddddd;
+    --vscode-text: #333333;
+    --vscode-accent: #0066b8;
+    --vscode-selection: #add6ff;
+    --vscode-border: #cecece;
+    --vscode-hover-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Apply smooth transitions for theme switching */
+body * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background-color: var(--vscode-bg);
+    color: var(--vscode-text);
+    margin: 0;
+    padding: 0;
+}
+
+/* VS Code-style Navigation */
+nav {
+    background-color: var(--vscode-titlebar-bg) !important;
+    border-bottom: 1px solid var(--vscode-border);
+}
+
+nav a {
+    color: var(--vscode-text) !important;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background-color 0.2s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* VS Code-style Sections */
+section {
+    padding: 20px;
+    margin: 10px;
+    background-color: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 4px;
+}
+
+/* VS Code-style Headings */
+h1, h2, h3 {
+    color: var(--vscode-text);
+    font-weight: normal;
+}
+
+/* VS Code-style Links */
+a {
+    color: var(--vscode-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* VS Code-style Buttons */
+.bg-blue-500 {
+    background-color: var(--vscode-accent) !important;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    border-radius: 2px;
+    transition: background-color 0.2s;
+}
+
+.bg-blue-500:hover {
+    background-color: #1b8ae2 !important;
+}
+
+/* VS Code-style Project Cards */
+.bg-gray-800 {
+    background-color: var(--vscode-sidebar-bg) !important;
+    border: 1px solid var(--vscode-border);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    color: var(--vscode-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background-color: var(--vscode-hover-bg);
+}
+
+.theme-toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* VS Code-style Scrollbar */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--vscode-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #424242;
+    border: 3px solid var(--vscode-bg);
+    border-radius: 7px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+
