@@ -23,6 +23,24 @@
                 <span class="mx-3">Help</span>
             </div>
         </div>
+        <div class="theme-toggle-wrapper">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <svg class="theme-toggle-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-toggle-icon moon-icon hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
@@ -65,38 +83,366 @@
 
         <!-- VS Code-style Main Content -->
         <main class="flex-1 overflow-y-auto bg-[#1e1e1e] p-6">
-            <!-- Hero Section -->
-            <section id="about" class="mb-12 fade-in">
-                <h1 class="text-4xl font-light mb-4">Hello, I'm <span class="text-[#007acc]">Nishvika</span></h1>
-                <p class="text-gray-400 mb-6">A Passionate Developer & Engineer</p>
-                <a href="resume.pdf" download class="inline-block px-6 py-2 bg-[#007acc] text-white rounded hover:bg-[#1b8ae2] transition-colors">
-                    Download Resume
-                </a>
-            </section>
+            <!-- Tab Navigation -->
+            <nav class="tab-nav mb-6 border-b border-[#474747]">
+                <button class="tab-button active px-6 py-3 text-[#d4d4d4] hover:text-white" data-tab="about">About</button>
+                <button class="tab-button px-6 py-3 text-[#d4d4d4] hover:text-white" data-tab="skills">Skills</button>
+                <button class="tab-button px-6 py-3 text-[#d4d4d4] hover:text-white" data-tab="achievements">Achievements</button>
+                <button class="tab-button px-6 py-3 text-[#d4d4d4] hover:text-white" data-tab="projects">Projects</button>
+                <button class="tab-button px-6 py-3 text-[#d4d4d4] hover:text-white" data-tab="contact">Contact</button>
+            </nav>
 
-            <!-- Projects Section -->
-            <section id="projects" class="mb-12 fade-in">
-                <h2 class="text-2xl font-light mb-6">Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-[#252526] p-6 rounded border border-[#474747]">
-                        <h3 class="text-xl mb-2">Project 1</h3>
-                        <p class="text-gray-400 mb-4">Description of your project.</p>
-                        <a href="#" class="text-[#007acc] hover:underline">View Project</a>
+            <!-- Tab Content Sections -->
+            <div class="tab-content">
+                <!-- About Section -->
+                <section id="about" class="tab-pane active fade-in">
+                    <h1 class="text-4xl font-light mb-4">Hello, I'm <span class="text-[#007acc]">Nishvika</span></h1>
+                    <p class="text-gray-400 mb-6">A <span id="typing-text" class="text-[#007acc]"></span></p>
+                    
+                    <!-- Contact Info Box -->
+                    <div class="bg-[#252526] p-6 rounded border border-[#474747] mb-6">
+                        <a href="resume.pdf" download class="inline-block px-6 py-2 bg-[#007acc] text-white rounded hover:bg-[#1b8ae2] transition-colors">
+                            Download Resume
+                        </a>
                     </div>
-                    <div class="bg-[#252526] p-6 rounded border border-[#474747]">
-                        <h3 class="text-xl mb-2">Project 2</h3>
-                        <p class="text-gray-400 mb-4">Description of your project.</p>
-                        <a href="#" class="text-[#007acc] hover:underline">View Project</a>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="fade-in">
-                <h2 class="text-2xl font-light mb-6">Contact</h2>
-                <p class="text-gray-400 mb-4">Feel free to reach out via email or LinkedIn.</p>
-                <a href="mailto:your.email@example.com" class="text-[#007acc] hover:underline">Email Me</a>
-            </section>
+                <!-- Skills Section -->
+                <section id="skills" class="tab-pane hidden fade-in">
+                    <h2 class="text-2xl font-light mb-8">Technical Skills</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Programming Languages -->
+                        <div class="skills-category bg-[#252526] p-6 rounded-lg border border-[#474747]">
+                            <h3 class="text-xl font-light mb-6 text-[#007acc]">Programming Languages</h3>
+                            <div class="space-y-6">
+                                <div class="skill-item" data-aos="fade-right">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">C++</span>
+                                        <span class="text-[#007acc] text-sm">95%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="95"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-right" data-aos-delay="100">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">JavaScript</span>
+                                        <span class="text-[#007acc] text-sm">90%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="90"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-right" data-aos-delay="200">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">Python</span>
+                                        <span class="text-[#007acc] text-sm">85%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="85"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-right" data-aos-delay="300">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">TypeScript</span>
+                                        <span class="text-[#007acc] text-sm">88%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="88"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Core Skills -->
+                        <div class="skills-category bg-[#252526] p-6 rounded-lg border border-[#474747]">
+                            <h3 class="text-xl font-light mb-6 text-[#007acc]">Core Skills</h3>
+                            <div class="space-y-6">
+                                <div class="skill-item" data-aos="fade-left">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">Data Structures</span>
+                                        <span class="text-[#007acc] text-sm">95%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="95"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-left" data-aos-delay="100">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">Algorithms</span>
+                                        <span class="text-[#007acc] text-sm">92%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="92"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-left" data-aos-delay="200">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">System Design</span>
+                                        <span class="text-[#007acc] text-sm">88%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="88"></div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-item" data-aos="fade-left" data-aos-delay="300">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-[#d4d4d4] font-medium">Problem Solving</span>
+                                        <span class="text-[#007acc] text-sm">96%</span>
+                                    </div>
+                                    <div class="skill-bar-bg h-2 bg-[#1e1e1e] rounded-full overflow-hidden">
+                                        <div class="skill-bar-fill h-full bg-gradient-to-r from-[#007acc] to-[#4F46E5]" 
+                                             style="width: 0%" data-width="96"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Achievements Section -->
+                <section id="achievements" class="tab-pane hidden fade-in">
+                    <h2 class="text-2xl font-light mb-8">Achievements & Timeline</h2>
+                    
+                    <div class="timeline-container">
+                        <!-- 2024 Achievement -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">March 2024</div>
+                                <h3 class="timeline-title">AWS Certified Solutions Architect</h3>
+                                <p class="timeline-description">Achieved AWS Solutions Architect Professional certification with a score of 980/1000.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2023 Achievement -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">September 2023</div>
+                                <h3 class="timeline-title">Senior Software Engineer Promotion</h3>
+                                <p class="timeline-description">Promoted to Senior Software Engineer role after successfully leading multiple high-impact projects.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2023 Achievement -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">May 2023</div>
+                                <h3 class="timeline-title">Published Technical Book</h3>
+                                <p class="timeline-description">Authored "Modern Web Development with React" - Published by Tech Publications.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2022 Achievement -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">November 2022</div>
+                                <h3 class="timeline-title">Hackathon Winner</h3>
+                                <p class="timeline-description">Won first place in the International Developer Hackathon for innovative AI solution.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2022 Achievement -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">June 2022</div>
+                                <h3 class="timeline-title">Conference Speaker</h3>
+                                <p class="timeline-description">Featured speaker at ReactConf 2022, presenting on "Advanced State Management Patterns".</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="tab-pane hidden fade-in">
+                    <h2 class="text-2xl font-light mb-6">Projects</h2>
+                    
+                    <!-- Filter Buttons -->
+                    <div class="filter-buttons mb-8 flex flex-wrap gap-2">
+                        <button class="filter-btn active px-4 py-2 rounded text-sm" data-filter="all">All</button>
+                        <button class="filter-btn px-4 py-2 rounded text-sm" data-filter="javascript">JavaScript</button>
+                        <button class="filter-btn px-4 py-2 rounded text-sm" data-filter="react">React</button>
+                        <button class="filter-btn px-4 py-2 rounded text-sm" data-filter="python">Python</button>
+                        <button class="filter-btn px-4 py-2 rounded text-sm" data-filter="cpp">C++</button>
+                    </div>
+
+                    <!-- Projects Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Project Card - JavaScript -->
+                        <div class="project-card bg-[#252526] p-6 rounded border border-[#474747]" 
+                             data-categories="javascript">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl">Task Manager App</h3>
+                                <div class="tech-tags flex gap-2">
+                                    <span class="px-2 py-1 text-xs rounded bg-[#2d2d2d] text-[#007acc]">JavaScript</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 mb-4">A dynamic task management application with drag-and-drop functionality.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#007acc] hover:underline">View Project</a>
+                                <a href="#" class="text-[#007acc] hover:underline">GitHub</a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card - React -->
+                        <div class="project-card bg-[#252526] p-6 rounded border border-[#474747]" 
+                             data-categories="react javascript">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl">Portfolio Website</h3>
+                                <div class="tech-tags flex gap-2">
+                                    <span class="px-2 py-1 text-xs rounded bg-[#2d2d2d] text-[#007acc]">React</span>
+                                    <span class="px-2 py-1 text-xs rounded bg-[#2d2d2d] text-[#007acc]">JavaScript</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 mb-4">Personal portfolio website built with React and modern web technologies.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#007acc] hover:underline">View Project</a>
+                                <a href="#" class="text-[#007acc] hover:underline">GitHub</a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card - Python -->
+                        <div class="project-card bg-[#252526] p-6 rounded border border-[#474747]" 
+                             data-categories="python">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl">Data Analysis Tool</h3>
+                                <div class="tech-tags flex gap-2">
+                                    <span class="px-2 py-1 text-xs rounded bg-[#2d2d2d] text-[#007acc]">Python</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 mb-4">A data visualization and analysis tool using Python and Pandas.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#007acc] hover:underline">View Project</a>
+                                <a href="#" class="text-[#007acc] hover:underline">GitHub</a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card - C++ -->
+                        <div class="project-card bg-[#252526] p-6 rounded border border-[#474747]" 
+                             data-categories="cpp">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl">Game Engine</h3>
+                                <div class="tech-tags flex gap-2">
+                                    <span class="px-2 py-1 text-xs rounded bg-[#2d2d2d] text-[#007acc]">C++</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 mb-4">A lightweight 2D game engine built with C++ and OpenGL.</p>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#007acc] hover:underline">View Project</a>
+                                <a href="#" class="text-[#007acc] hover:underline">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="tab-pane hidden fade-in">
+                    <h2 class="text-2xl font-light mb-6">Contact</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Contact Info -->
+                        <div class="bg-[#252526] p-6 rounded border border-[#474747]">
+                            <h3 class="text-xl mb-6">Get in Touch</h3>
+                            <div class="space-y-4">
+                                <a href="mailto:your.email@example.com" class="contact-link flex items-center text-[#d4d4d4] hover:text-[#007acc] transition-colors">
+                                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    your.email@example.com
+                                </a>
+                                <a href="#" class="contact-link flex items-center text-[#d4d4d4] hover:text-[#007acc] transition-colors">
+                                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                    LinkedIn Profile
+                                </a>
+                                <a href="#" class="contact-link flex items-center text-[#d4d4d4] hover:text-[#007acc] transition-colors">
+                                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                                    </svg>
+                                    GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="bg-[#252526] p-6 rounded border border-[#474747]">
+                            <form id="contact-form" class="space-y-4" novalidate>
+                                <div class="form-group">
+                                    <label for="name" class="block text-[#d4d4d4] mb-2">Name</label>
+                                    <input type="text" id="name" name="name" 
+                                           class="w-full px-4 py-2 bg-[#1e1e1e] border border-[#474747] rounded text-[#d4d4d4] focus:border-[#007acc] focus:outline-none transition-colors"
+                                           required>
+                                    <span class="error-message text-red-500 text-sm mt-1"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="block text-[#d4d4d4] mb-2">Email</label>
+                                    <input type="email" id="email" name="email" 
+                                           class="w-full px-4 py-2 bg-[#1e1e1e] border border-[#474747] rounded text-[#d4d4d4] focus:border-[#007acc] focus:outline-none transition-colors"
+                                           required>
+                                    <span class="error-message text-red-500 text-sm mt-1"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message" class="block text-[#d4d4d4] mb-2">Message</label>
+                                    <textarea id="message" name="message" rows="5" 
+                                              class="w-full px-4 py-2 bg-[#1e1e1e] border border-[#474747] rounded text-[#d4d4d4] focus:border-[#007acc] focus:outline-none transition-colors resize-none"
+                                              required></textarea>
+                                    <span class="error-message text-red-500 text-sm mt-1"></span>
+                                </div>
+
+                                <button type="submit" 
+                                        class="w-full px-6 py-3 bg-[#007acc] text-white rounded hover:bg-[#1b8ae2] focus:outline-none focus:ring-2 focus:ring-[#007acc] focus:ring-opacity-50 transition-colors">
+                                    Send Message
+                                </button>
+                            </form>
+
+                            <!-- Success Message -->
+                            <div id="success-message" class="hidden mt-4 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded text-green-400">
+                                Thank you! Your message has been sent successfully.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
     

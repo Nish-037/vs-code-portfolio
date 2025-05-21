@@ -1,5 +1,9 @@
 /* Theme Variables */
 :root {
+    /* Common variables */
+    --transition-speed: 0.3s;
+    --border-radius: 4px;
+
     /* Dark theme (default) */
     --vscode-bg: #1e1e1e;
     --vscode-sidebar-bg: #252526;
@@ -9,6 +13,10 @@
     --vscode-selection: #264f78;
     --vscode-border: #474747;
     --vscode-hover-bg: rgba(255, 255, 255, 0.1);
+    --vscode-highlight: #4F46E5;
+    --vscode-shadow: rgba(0, 0, 0, 0.3);
+    --vscode-error: #f44747;
+    --vscode-success: #89d185;
 }
 
 /* Light theme */
@@ -21,11 +29,18 @@
     --vscode-selection: #add6ff;
     --vscode-border: #cecece;
     --vscode-hover-bg: rgba(0, 0, 0, 0.1);
+    --vscode-highlight: #0066b8;
+    --vscode-shadow: rgba(0, 0, 0, 0.1);
+    --vscode-error: #e51400;
+    --vscode-success: #008000;
 }
 
-/* Apply smooth transitions for theme switching */
+/* Theme Transition */
 body * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
 }
 
 body {
@@ -50,7 +65,9 @@ nav a {
 }
 
 nav a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--vscode-highlight);
+    opacity: 0.8;
+    transform: translateY(-1px);
 }
 
 /* VS Code-style Sections */
@@ -97,30 +114,27 @@ a:hover {
     border: 1px solid var(--vscode-border);
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem;
-    border-radius: 4px;
+
+
+/* Light Theme Specific Overrides */
+[data-theme="light"] .bg-\[\#252526\] {
     background-color: var(--vscode-sidebar-bg);
-    border: 1px solid var(--vscode-border);
+}
+
+[data-theme="light"] .border-\[\#474747\] {
+    border-color: var(--vscode-border);
+}
+
+[data-theme="light"] .text-\[\#d4d4d4\] {
     color: var(--vscode-text);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    z-index: 1000;
 }
 
-.theme-toggle:hover {
-    background-color: var(--vscode-hover-bg);
+[data-theme="light"] .bg-\[\#1e1e1e\] {
+    background-color: var(--vscode-bg);
 }
 
-.theme-toggle svg {
-    width: 1.2rem;
-    height: 1.2rem;
+[data-theme="light"] .bg-\[\#3c3c3c\] {
+    background-color: var(--vscode-titlebar-bg);
 }
 
 /* Animations */
@@ -157,5 +171,1162 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #4f4f4f;
 }
+
+/* Enhanced Project Cards */
+#projects .bg-\[\#252526\] {
+    position: relative;
+    transform: translateY(0);
+    border: 1px solid var(--vscode-border);
+    box-shadow: 0 2px 4px var(--vscode-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#projects .bg-\[\#252526\]:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--vscode-highlight);
+    box-shadow: 0 10px 20px var(--vscode-shadow);
+}
+
+#projects .bg-\[\#252526\]:hover h3 {
+    color: var(--vscode-highlight);
+}
+
+/* Enhanced Buttons */
+.inline-block,
+button,
+.bg-blue-500,
+[type="button"] {
+    position: relative;
+    transform: scale(1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.inline-block:hover,
+button:hover,
+.bg-blue-500:hover,
+[type="button"]:hover {
+    transform: scale(1.05);
+    background-color: var(--vscode-highlight) !important;
+    box-shadow: 0 4px 12px var(--vscode-shadow);
+}
+
+.inline-block:active,
+button:active,
+.bg-blue-500:active,
+[type="button"]:active {
+    transform: scale(0.98);
+}
+
+/* Enhanced Links */
+a:not(.inline-block) {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a:not(.inline-block)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--vscode-highlight);
+    transition: width 0.3s ease;
+}
+
+a:not(.inline-block):hover::after {
+    width: 100%;
+}
+
+/* Enhanced Nav Links */
+nav a:hover {
+    background-color: var(--vscode-highlight);
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+/* Tab Navigation Styles */
+.tab-nav {
+    display: flex;
+    gap: 2px;
+    background-color: var(--vscode-bg);
+    position: relative;
+    padding: 0 1rem;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tab-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-button {
+    background: transparent;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem 1.5rem;
+    color: var(--vscode-text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+}
+
+.tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--vscode-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab-button:hover {
+    color: var(--vscode-accent);
+    background-color: var(--vscode-hover-bg);
+}
+
+.tab-button:hover::after {
+    transform: scaleX(0.8);
+}
+
+.tab-button.active {
+    color: var(--vscode-accent);
+    background-color: var(--vscode-selection);
+}
+
+.tab-button.active::after {
+    transform: scaleX(1);
+    height: 2px;
+    background: linear-gradient(90deg, var(--vscode-accent), var(--vscode-highlight));
+}
+
+/* Make tabs responsive */
+@media (max-width: 768px) {
+    .tab-nav {
+        gap: 0;
+        padding: 0 0.5rem;
+    }
+    
+    .tab-button {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-button {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Project Filter Styles */
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background-color: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    color: var(--vscode-text);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--vscode-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--vscode-hover-bg);
+}
+
+.filter-btn:hover::after {
+    transform: scaleX(1);
+}
+
+.filter-btn.active {
+    background-color: var(--vscode-accent);
+    color: white;
+    border-color: var(--vscode-accent);
+}
+
+.filter-btn.active::after {
+    transform: scaleX(1);
+}
+
+/* Project Card Animations */
+.project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.project-card.hidden {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Tech Tags Styles */
+.tech-tags span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    background-color: var(--vscode-selection);
+    color: var(--vscode-text);
+    transition: all 0.3s ease;
+}
+
+.tech-tags span:hover {
+    background-color: var(--vscode-accent);
+    transform: translateY(-1px);
+}
+
+/* Project Image and Lightbox Styles */
+.project-image-container {
+    position: relative;
+    background-color: var(--vscode-bg);
+    border: 1px solid var(--vscode-border);
+}
+
+.project-image-container::after {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.project-image-container:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.project-image-container:hover .project-image {
+    filter: brightness(0.7);
+}
+
+.project-image {
+    transition: all 0.3s ease;
+}
+
+/* Lightbox Modal Styles */
+.lightbox-modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+}
+
+.modal-container {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lightbox-modal.active .modal-container {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-close {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+.modal-image {
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lightbox-modal.active .modal-image {
+    transform: scale(1);
+}
+
+/* Add keyboard focus styles */
+.modal-close:focus {
+    outline: 2px solid var(--vscode-accent);
+    outline-offset: 2px;
+}
+
+.project-image-container:focus {
+    outline: 2px solid var(--vscode-accent);
+    outline-offset: 2px;
+}
+
+/* Loading animation for images */
+.modal-image.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Skills Section Styles */
+.skills-category {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.skill-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.skill-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skill Bar Styles */
+.skill-bar-bg {
+    background: var(--vscode-bg);
+    border: 1px solid var(--vscode-border);
+}
+
+.skill-bar-fill {
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.3);
+}
+
+/* Add staggered animation delays */
+.skill-item:nth-child(1) { transition-delay: 0.1s; }
+.skill-item:nth-child(2) { transition-delay: 0.2s; }
+.skill-item:nth-child(3) { transition-delay: 0.3s; }
+.skill-item:nth-child(4) { transition-delay: 0.4s; }
+
+/* Hover effects */
+.skill-bar-bg:hover .skill-bar-fill {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px rgba(0, 122, 204, 0.5);
+}
+
+/* Make sure skills section is visible when active */
+#skills.tab-pane {
+    opacity: 1;
+    visibility: visible;
+}
+
+#skills.tab-pane.hidden {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Ensure grid layout works properly */
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Skill percentage text animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-item span {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Contact Form Styles */
+.form-group {
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    background-color: var(--vscode-bg);
+    border: 1px solid var(--vscode-border);
+    color: var(--vscode-text);
+    transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: var(--vscode-selection);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--vscode-accent);
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: var(--vscode-error);
+}
+
+.form-group.success input,
+.form-group.success textarea {
+    border-color: var(--vscode-success);
+}
+
+.error-message {
+    color: var(--vscode-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.form-group.error .error-message {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contact Form Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Success Message Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#success-message {
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+/* Contact Links */
+.contact-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background-color: var(--vscode-hover-bg);
+    transform: translateX(5px);
+}
+
+.contact-link svg {
+    transition: transform 0.3s ease;
+}
+
+.contact-link:hover svg {
+    transform: scale(1.1);
+}
+
+/* Theme Toggle Ripple Effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Disable transitions on page load */
+.theme-transitions-enabled * {
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease !important;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle-wrapper {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background-color: var(--vscode-hover-bg);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--vscode-accent);
+    outline-offset: 2px;
+}
+
+.theme-toggle-icon {
+    color: var(--vscode-text);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+}
+
+.theme-toggle-icon.hidden {
+    display: none;
+}
+
+/* Icon animations */
+.sun-icon {
+    transform-origin: center;
+}
+
+.moon-icon {
+    transform-origin: center;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(45deg);
+}
+
+/* System preference media query */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        --vscode-bg: #ffffff;
+        --vscode-sidebar-bg: #f3f3f3;
+        --vscode-titlebar-bg: #dddddd;
+        --vscode-text: #333333;
+        --vscode-accent: #0066b8;
+        --vscode-selection: #add6ff;
+        --vscode-border: #cecece;
+        --vscode-hover-bg: rgba(0, 0, 0, 0.1);
+        --vscode-highlight: #0066b8;
+        --vscode-shadow: rgba(0, 0, 0, 0.1);
+        --vscode-error: #e51400;
+        --vscode-success: #008000;
+    }
+}
+
+/* Timeline Styles */
+.timeline-container {
+    position: relative;
+    padding: 2rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--vscode-border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-left: 40px;
+    padding: 0 0 3rem 2rem;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -40px;
+    width: 36px;
+    height: 36px;
+    background: var(--vscode-sidebar-bg);
+    border: 2px solid var(--vscode-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timeline-dot svg {
+    color: var(--vscode-accent);
+    transition: all 0.3s ease;
+}
+
+.timeline-content {
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-date {
+    color: var(--vscode-accent);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    color: var(--vscode-text);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-description {
+    color: var(--vscode-text);
+    opacity: 0.8;
+}
+
+/* Timeline Hover Effects */
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.2);
+    border-color: var(--vscode-highlight);
+}
+
+.timeline-item:hover .timeline-dot svg {
+    color: var(--vscode-highlight);
+    transform: rotate(360deg);
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateX(10px);
+    border-color: var(--vscode-highlight);
+    box-shadow: 0 4px 12px var(--vscode-shadow);
+}
+
+/* Timeline Responsive Styles */
+@media (max-width: 640px) {
+    .timeline-container {
+        padding: 1rem 0;
+    }
+
+    .timeline-container::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        margin-left: 20px;
+        padding-left: 2.5rem;
+    }
+
+    .timeline-dot {
+        left: -20px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .timeline-dot svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
+}
+
+/* Timeline Animation */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add staggered animation delays */
+.timeline-item:nth-child(1) { transition-delay: 0.1s; }
+.timeline-item:nth-child(2) { transition-delay: 0.2s; }
+.timeline-item:nth-child(3) { transition-delay: 0.3s; }
+.timeline-item:nth-child(4) { transition-delay: 0.4s; }
+.timeline-item:nth-child(5) { transition-delay: 0.5s; }
+
+/* GitHub Section Styles */
+.github-profile-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px var(--vscode-shadow);
+}
+
+.github-avatar img {
+    transition: transform 0.3s ease;
+}
+
+.github-profile-card:hover .github-avatar img {
+    transform: scale(1.05);
+}
+
+.github-stats .stat-item {
+    position: relative;
+    padding: 0.5rem 1rem;
+    background: var(--vscode-bg);
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.github-stats .stat-item:hover {
+    transform: translateY(-2px);
+}
+
+.github-contributions {
+    overflow: hidden;
+}
+
+.github-contributions img {
+    transition: transform 0.3s ease;
+    filter: brightness(0.95);
+}
+
+.github-contributions:hover img {
+    transform: scale(1.02);
+    filter: brightness(1);
+}
+
+/* Repository Card Styles */
+.repo-card {
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.repo-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--vscode-highlight);
+    box-shadow: 0 8px 24px var(--vscode-shadow);
+}
+
+.repo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.repo-name {
+    color: var(--vscode-accent);
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.repo-description {
+    color: var(--vscode-text);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.repo-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--vscode-border);
+}
+
+.repo-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--vscode-text);
+    font-size: 0.875rem;
+}
+
+.repo-language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.language-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .github-profile-card .flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .github-avatar {
+        margin: 0 auto 1rem;
+    }
+
+    .github-stats {
+        justify-content: center;
+    }
+
+    .repo-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Statistics Counter Styles */
+.stats-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--vscode-highlight) 0%, transparent 100%);
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.stat-card {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--vscode-sidebar-bg);
+    border: 1px solid var(--vscode-border);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--vscode-accent) 0%, var(--vscode-highlight) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px var(--vscode-shadow);
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.stat-content {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--vscode-text);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    color: var(--vscode-text);
+    opacity: 0.8;
+    font-size: 0.875rem;
+}
+
+/* Counter Animation */
+.counter {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.counter.animate {
+    animation: countPulse 0.3s ease-out;
+}
+
+@keyframes countPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .stat-icon {
+        padding: 0.75rem;
+    }
+
+    .stat-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+/* Add hover effect for stat cards */
+.stat-card {
+    cursor: pointer;
+}
+
+.stat-card:hover .stat-value {
+    color: var(--vscode-accent);
+}
+
+/* Footer Styles */
+.footer-wrapper {
+    background-color: var(--vscode-bg);
+}
+
+.main-footer {
+    position: relative;
+}
+
+.footer-section {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.footer-section h3 {
+    position: relative;
+    color: var(--vscode-accent);
+    letter-spacing: 0.05em;
+}
+
+.footer-nav {
+    min-width: 120px;
+}
+
+.footer-link {
+    color: var(--vscode-text);
+    opacity: 0.75;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+    padding: 2px 0;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--vscode-accent);
+    transition: width 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--vscode-accent);
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+.social-links {
+    min-width: 120px;
+}
+
+.social-link {
+    color: var(--vscode-text);
+    opacity: 0.75;
+    transition: all 0.2s ease;
+    padding: 0.375rem;
+    border-radius: 0.375rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link:hover {
+    color: var(--vscode-accent);
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.social-link svg {
+    transition: transform 0.2s ease;
+}
+
+.copyright-bar {
+    position: relative;
+    text-align: center;
+}
+
+/* Responsive Footer Styles */
+@media (max-width: 768px) {
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-section {
+        width: 100%;
+    }
+
+    .footer-nav {
+        align-items: center;
+    }
+
+    .footer-link:hover {
+        transform: translateY(-2px);
+    }
+
+    .social-links {
+        margin: 0 auto;
+    }
+}
+
+/* Footer Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer-section {
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.footer-section:nth-child(1) { animation-delay: 0.1s; }
+.footer-section:nth-child(2) { animation-delay: 0.15s; }
+.footer-section:nth-child(3) { animation-delay: 0.2s; }
+
+
 
 
