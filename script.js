@@ -3,93 +3,140 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const sunIcon = document.querySelector('.sun-icon');
     const moonIcon = document.querySelector('.moon-icon');
-    const root = document.documentElement;
+    const html = document.documentElement;
+    const body = document.body;
 
     // Function to set theme
-    function setTheme(theme) {
-        root.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+    function setTheme(isDark) {
+        // Enable transitions before theme change
+        body.classList.add('theme-transitions-enabled');
         
-        // Update icons
-        if (theme === 'light') {
-            sunIcon.classList.add('hidden');
-            moonIcon.classList.remove('hidden');
-        } else {
+        if (isDark) {
+            html.classList.add('dark');
             moonIcon.classList.add('hidden');
             sunIcon.classList.remove('hidden');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.classList.remove('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+            localStorage.setItem('theme', 'light');
         }
     }
 
     // Function to get system preference
     function getSystemPreference() {
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
     // Initialize theme
     const savedTheme = localStorage.getItem('theme');
-    const systemPreference = getSystemPreference();
+    const prefersDark = getSystemPreference();
     
     if (savedTheme) {
-        setTheme(savedTheme);
+        setTheme(savedTheme === 'dark');
     } else {
-        setTheme(systemPreference);
+        setTheme(prefersDark);
     }
 
     // Toggle theme on button click
     themeToggle.addEventListener('click', () => {
-        const currentTheme = root.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
+        const isDark = html.classList.contains('dark');
+        setTheme(!isDark);
     });
 
     // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'light' : 'dark');
+            setTheme(e.matches);
         }
     });
 });
 
-// Tab Switching Functionality
+// Tab Switching and Navigation
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabPanes = document.querySelectorAll('.tab-pane');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-    function switchTab(e) {
+    // Function to switch tabs
+    function switchTab(targetId) {
         // Remove active class from all buttons and panes
         tabButtons.forEach(button => button.classList.remove('active'));
-        tabPanes.forEach(pane => pane.classList.remove('active', 'fade-in'));
+        tabPanes.forEach(pane => {
+            pane.classList.remove('active', 'fade-in');
+            pane.classList.add('hidden');
+        });
 
-        // Add active class to clicked button
-        e.target.classList.add('active');
+        // Add active class to clicked button and corresponding pane
+        const targetButton = document.querySelector(`[data-tab="${targetId.replace('#', '')}"]`);
+        const targetPane = document.getElementById(targetId.replace('#', ''));
+        
+        if (targetButton && targetPane) {
+            targetButton.classList.add('active');
+            targetPane.classList.remove('hidden');
+            targetPane.classList.add('active');
 
-        // Show corresponding pane
-        const targetTab = e.target.dataset.tab;
-        const targetPane = document.getElementById(targetTab);
-        targetPane.classList.add('active');
-
-        // Trigger fade-in animation
-        setTimeout(() => {
-            targetPane.classList.add('fade-in');
-        }, 50);
-
-        // Update URL hash without scrolling
-        history.pushState(null, null, `#${targetTab}`);
-    }
-
-    // Add click handlers to all tab buttons
-    tabButtons.forEach(button => {
-        button.addEventListener('click', switchTab);
-    });
-
-    // Handle initial tab based on URL hash
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-        const activeTab = document.querySelector(`[data-tab="${hash}"]`);
-        if (activeTab) {
-            activeTab.click();
+            // Trigger fade-in animation
+            setTimeout(() => {
+                targetPane.classList.add('fade-in');
+            }, 50);
         }
     }
+
+    // Handle tab button clicks
+    tabButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const targetId = e.target.dataset.tab;
+            switchTab(targetId);
+            // Update URL without scrolling
+            history.pushState(null, null, `#${targetId}`);
+        });
+    });
+
+    // Handle navigation links with smooth scroll
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            
+            // Switch to the correct tab first
+            switchTab(targetId);
+
+            // Then scroll smoothly to the section
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Handle initial load based on URL hash
+    window.addEventListener('load', () => {
+        const hash = window.location.hash;
+        if (hash) {
+            switchTab(hash);
+            // Scroll to section after a brief delay to ensure content is loaded
+            setTimeout(() => {
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash || '#about';
+        switchTab(hash);
+    });
 });
 
 // Timeline Animation
@@ -413,7 +460,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Skills Animation
 document.addEventListener('DOMContentLoaded', () => {
     const skillItems = document.querySelectorAll('.skill-item');
-    const skillProgress = document.querySelectorAll('.skill-progress');
     
     function animateSkills(entries, observer) {
         entries.forEach(entry => {
@@ -462,80 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
-
-// Skill Bars Animation
-document.addEventListener('DOMContentLoaded', () => {
-    const skillBars = document.querySelectorAll('.skill-bar-fill');
-    const skillItems = document.querySelectorAll('.skill-item');
-
-    // Intersection Observer for skill items
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add visible class to trigger fade in
-                entry.target.classList.add('visible');
-                
-                // Animate the skill bar if it exists
-                const skillBar = entry.target.querySelector('.skill-bar-fill');
-                if (skillBar) {
-                    const targetWidth = skillBar.getAttribute('data-width');
-                    setTimeout(() => {
-                        skillBar.style.width = `${targetWidth}%`;
-                    }, 200); // Small delay for better visual effect
-                }
-                
-                // Optionally unobserve after animation
-                // skillObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2, // Trigger when 20% of item is visible
-        rootMargin: '0px' // No margin
-    });
-
-    // Observe all skill items
-    skillItems.forEach(item => {
-        skillObserver.observe(item);
-    });
-
-    // Handle tab switching animations
-    const skillsTab = document.querySelector('[data-tab="skills"]');
-    if (skillsTab) {
-        skillsTab.addEventListener('click', () => {
-            // Reset all animations
-            skillItems.forEach(item => {
-                item.classList.remove('visible');
-            });
-            skillBars.forEach(bar => {
-                bar.style.width = '0';
-            });
-
-            // Re-trigger animations after a short delay
-            setTimeout(() => {
-                skillItems.forEach(item => {
-                    item.classList.add('visible');
-                });
-                skillBars.forEach(bar => {
-                    const targetWidth = bar.getAttribute('data-width');
-                    bar.style.width = `${targetWidth}%`;
-                });
-            }, 300);
-        });
-    }
-
-    // Initial animation if skills section is active
-    if (window.location.hash === '#skills') {
-        setTimeout(() => {
-            skillItems.forEach(item => {
-                item.classList.add('visible');
-            });
-            skillBars.forEach(bar => {
-                const targetWidth = bar.getAttribute('data-width');
-                bar.style.width = `${targetWidth}%`;
-            });
-        }, 300);
-    }
 });
 
 // Contact Form Handling
@@ -641,80 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.textContent = originalButtonText;
         }
     });
-});
-
-// Skill Bars Animation
-document.addEventListener('DOMContentLoaded', () => {
-    const skillBars = document.querySelectorAll('.skill-bar-fill');
-    const skillItems = document.querySelectorAll('.skill-item');
-
-    // Intersection Observer for skill items
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add visible class to trigger fade in
-                entry.target.classList.add('visible');
-                
-                // Animate the skill bar if it exists
-                const skillBar = entry.target.querySelector('.skill-bar-fill');
-                if (skillBar) {
-                    const targetWidth = skillBar.getAttribute('data-width');
-                    setTimeout(() => {
-                        skillBar.style.width = `${targetWidth}%`;
-                    }, 200); // Small delay for better visual effect
-                }
-                
-                // Optionally unobserve after animation
-                // skillObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2, // Trigger when 20% of item is visible
-        rootMargin: '0px' // No margin
-    });
-
-    // Observe all skill items
-    skillItems.forEach(item => {
-        skillObserver.observe(item);
-    });
-
-    // Handle tab switching animations
-    const skillsTab = document.querySelector('[data-tab="skills"]');
-    if (skillsTab) {
-        skillsTab.addEventListener('click', () => {
-            // Reset all animations
-            skillItems.forEach(item => {
-                item.classList.remove('visible');
-            });
-            skillBars.forEach(bar => {
-                bar.style.width = '0';
-            });
-
-            // Re-trigger animations after a short delay
-            setTimeout(() => {
-                skillItems.forEach(item => {
-                    item.classList.add('visible');
-                });
-                skillBars.forEach(bar => {
-                    const targetWidth = bar.getAttribute('data-width');
-                    bar.style.width = `${targetWidth}%`;
-                });
-            }, 300);
-        });
-    }
-
-    // Initial animation if skills section is active
-    if (window.location.hash === '#skills') {
-        setTimeout(() => {
-            skillItems.forEach(item => {
-                item.classList.add('visible');
-            });
-            skillBars.forEach(bar => {
-                const targetWidth = bar.getAttribute('data-width');
-                bar.style.width = `${targetWidth}%`;
-            });
-        }, 300);
-    }
 });
 
 // GitHub Integration

@@ -4,35 +4,43 @@
     --transition-speed: 0.3s;
     --border-radius: 4px;
 
-    /* Dark theme (default) */
+    /* Light theme (default) */
+    --vscode-bg: #ffffff;
+    --vscode-sidebar-bg: #f3f3f3;
+    --vscode-titlebar-bg: #dcdcdc;
+    --vscode-text: #1e1e1e;
+    --vscode-accent: #007acc;
+    --vscode-selection: #add6ff;
+    --vscode-border: #e0e0e0;
+    --vscode-hover-bg: rgba(0, 0, 0, 0.1);
+    --vscode-highlight: #007acc;
+    --vscode-shadow: rgba(0, 0, 0, 0.1);
+    --vscode-error: #e51400;
+    --vscode-success: #008000;
+    --vscode-menu-bg: #f3f3f3;
+    --vscode-active-tab: #ffffff;
+    --vscode-inactive-tab: #ececec;
+    --vscode-tab-border: #e0e0e0;
+}
+
+/* Dark theme */
+.dark {
     --vscode-bg: #1e1e1e;
     --vscode-sidebar-bg: #252526;
-    --vscode-titlebar-bg: #3c3c3c;
+    --vscode-titlebar-bg: #333333;
     --vscode-text: #d4d4d4;
     --vscode-accent: #007acc;
     --vscode-selection: #264f78;
     --vscode-border: #474747;
     --vscode-hover-bg: rgba(255, 255, 255, 0.1);
-    --vscode-highlight: #4F46E5;
-    --vscode-shadow: rgba(0, 0, 0, 0.3);
-    --vscode-error: #f44747;
-    --vscode-success: #89d185;
-}
-
-/* Light theme */
-[data-theme="light"] {
-    --vscode-bg: #ffffff;
-    --vscode-sidebar-bg: #f3f3f3;
-    --vscode-titlebar-bg: #dddddd;
-    --vscode-text: #333333;
-    --vscode-accent: #0066b8;
-    --vscode-selection: #add6ff;
-    --vscode-border: #cecece;
-    --vscode-hover-bg: rgba(0, 0, 0, 0.1);
-    --vscode-highlight: #0066b8;
-    --vscode-shadow: rgba(0, 0, 0, 0.1);
-    --vscode-error: #e51400;
-    --vscode-success: #008000;
+    --vscode-highlight: #007acc;
+    --vscode-shadow: rgba(0, 0, 0, 0.4);
+    --vscode-error: #f85149;
+    --vscode-success: #4ec9b0;
+    --vscode-menu-bg: #3c3c3c;
+    --vscode-active-tab: #1e1e1e;
+    --vscode-inactive-tab: #2d2d2d;
+    --vscode-tab-border: #474747;
 }
 
 /* Theme Transition */
