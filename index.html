@@ -47,15 +47,113 @@
     <header class="bg-vscode-nav-light dark:bg-vscode-nav-dark text-vscode-text-light dark:text-vscode-text-dark p-2 flex items-center justify-between transition-colors duration-300">
         <div class="flex items-center">
             <span class="text-sm mr-4">Portfolio</span>
-            <div class="text-sm opacity-80">
-                <span>File</span>
-                <span class="mx-3">Edit</span>
-                <span class="mx-3">View</span>
-                <span class="mx-3">Go</span>
-                <span class="mx-3">Run</span>
-                <span class="mx-3">Terminal</span>
-                <span class="mx-3">Help</span>
-            </div>
+            <nav class="text-sm opacity-80">
+                <!-- File Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">File</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="new-file">
+                            <span class="mr-4">New File</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+N</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="open-project">
+                            <span class="mr-4">Open Project</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+O</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="download-resume">
+                            <span class="mr-4">Download Resume</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+D</span>
+                        </button>
+                        <div class="border-t border-vscode-border-light dark:border-vscode-border-dark my-1"></div>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="close">
+                            <span class="mr-4">Close</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+W</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Edit Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">Edit</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="undo">
+                            <span class="mr-4">Undo</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+Z</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="redo">
+                            <span class="mr-4">Redo</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+Y</span>
+                        </button>
+                        <div class="border-t border-vscode-border-light dark:border-vscode-border-dark my-1"></div>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="find">
+                            <span class="mr-4">Find</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+F</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- View Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">View</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="toggle-sidebar">
+                            <span class="mr-4">Toggle Sidebar</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+B</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="toggle-theme">
+                            <span class="mr-4">Toggle Theme</span>
+                            <span class="text-xs opacity-50 ml-auto">Alt+T</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="split-view">
+                            <span class="mr-4">Split View</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+\\</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Run Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">Run</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="run-project">
+                            <span class="mr-4">Run Project</span>
+                            <span class="text-xs opacity-50 ml-auto">F5</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="run-snippet">
+                            <span class="mr-4">Run Code Snippet</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+F5</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terminal Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">Terminal</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="new-terminal">
+                            <span class="mr-4">New Terminal</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+`</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Help Menu -->
+                <div class="menu-container inline-block">
+                    <button class="menu-trigger px-3 py-1 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] rounded">Help</button>
+                    <div class="menu-dropdown hidden absolute mt-1 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg">
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="about">
+                            <span class="mr-4">About This Portfolio</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="contact">
+                            <span class="mr-4">Contact Support</span>
+                        </button>
+                        <button class="menu-item w-full text-left px-4 py-2 hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] flex items-center" data-action="shortcuts">
+                            <span class="mr-4">Keyboard Shortcuts</span>
+                            <span class="text-xs opacity-50 ml-auto">Ctrl+K Ctrl+S</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
         </div>
         <div class="theme-toggle-wrapper">
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
@@ -76,6 +174,131 @@
             </button>
         </div>
     </header>
+
+    <!-- Search Bar (Initially Hidden) -->
+    <div id="search-bar" class="hidden fixed top-12 right-4 z-50 bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded shadow-lg p-2 flex items-center">
+        <input type="text" class="bg-transparent border-none outline-none text-vscode-text-light dark:text-vscode-text-dark w-64" placeholder="Search...">
+        <button class="ml-2 text-vscode-text-light dark:text-vscode-text-dark opacity-50 hover:opacity-100">×</button>
+    </div>
+
+    <!-- Terminal Panel (Initially Hidden) -->
+    <div id="terminal-panel" class="hidden fixed bottom-0 left-0 right-0 h-48 bg-[#1e1e1e] text-white font-mono text-sm z-40">
+        <div class="flex items-center justify-between bg-[#323233] px-4 py-1">
+            <span>Terminal</span>
+            <button class="text-white opacity-50 hover:opacity-100">×</button>
+        </div>
+        <div class="p-4 h-full overflow-auto" id="terminal-output">
+            <div class="terminal-line">
+                <span class="text-green-500">portfolio@user</span>
+                <span class="text-blue-500">:~$</span>
+                <span class="terminal-input"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Modal (Initially Hidden) -->
+    <div id="shortcuts-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded-lg w-[600px] max-h-[80vh] overflow-auto">
+            <div class="flex items-center justify-between p-4 border-b border-vscode-border-light dark:border-vscode-border-dark">
+                <h2 class="text-lg">Keyboard Shortcuts</h2>
+                <button class="text-vscode-text-light dark:text-vscode-text-dark opacity-50 hover:opacity-100">×</button>
+            </div>
+            <div class="p-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold mb-2">File</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>New File</span>
+                                <span class="text-sm opacity-50">Ctrl+N</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Open Project</span>
+                                <span class="text-sm opacity-50">Ctrl+O</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Save</span>
+                                <span class="text-sm opacity-50">Ctrl+S</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Close</span>
+                                <span class="text-sm opacity-50">Ctrl+W</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">View</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Toggle Sidebar</span>
+                                <span class="text-sm opacity-50">Ctrl+B</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Split View</span>
+                                <span class="text-sm opacity-50">Ctrl+\\</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Terminal</span>
+                                <span class="text-sm opacity-50">Ctrl+`</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Portfolio Modal (Initially Hidden) -->
+    <div id="about-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-vscode-bg-light dark:bg-vscode-bg-dark border border-vscode-border-light dark:border-vscode-border-dark rounded-lg w-[600px] max-h-[80vh] overflow-auto">
+            <div class="flex items-center justify-between p-4 border-b border-vscode-border-light dark:border-vscode-border-dark">
+                <h2 class="text-lg">About This Portfolio</h2>
+                <button class="text-vscode-text-light dark:text-vscode-text-dark opacity-50 hover:opacity-100">×</button>
+            </div>
+            <div class="p-4">
+                <p class="mb-4">This portfolio is designed to mimic the VS Code interface, providing a familiar environment for developers.</p>
+                <p class="mb-4">Features:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Interactive menus and keyboard shortcuts</li>
+                    <li>Dark/Light theme toggle</li>
+                    <li>Simulated terminal</li>
+                    <li>File explorer</li>
+                    <li>Split view functionality</li>
+                    <li>Markdown file editing</li>
+                    <li>Search functionality</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Run Preview Modal (Initially Hidden) -->
+    <div id="run-preview" class="hidden fixed bottom-36 right-4 w-96 h-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-vscode-border-light dark:border-vscode-border-dark overflow-hidden z-40">
+        <div class="flex justify-between items-center p-2 bg-vscode-titlebar-light dark:bg-vscode-titlebar-dark">
+            <span class="text-sm">Preview: localhost:3000</span>
+            <button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">&times;</button>
+        </div>
+        <div class="w-full h-full bg-white dark:bg-gray-900">
+            <!-- Preview content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Code Snippet Preview (Initially Hidden) -->
+    <div id="snippet-preview" class="hidden fixed bottom-36 right-4 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-vscode-border-light dark:border-vscode-border-dark z-40">
+        <div class="p-4">
+            <pre class="text-sm font-mono bg-gray-100 dark:bg-gray-900 p-4 rounded"><code>
+// Example code snippet
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+
+console.log(fibonacci(10));</code></pre>
+            <div class="mt-4 p-4 bg-black text-green-400 font-mono text-sm rounded">
+                <div class="typing-effect">Output: 55</div>
+            </div>
+            <button class="mt-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 float-right">&times;</button>
+        </div>
+    </div>
 
     <div class="flex flex-1 overflow-hidden">
         <!-- VS Code-style Activity Bar -->
@@ -110,17 +333,26 @@
         <!-- VS Code-style Explorer Sidebar -->
         <aside class="w-64 bg-vscode-sidebar-light dark:bg-vscode-sidebar-dark border-r border-vscode-border-light dark:border-vscode-border-dark overflow-y-auto transition-colors duration-300">
             <div class="p-4">
-                <h2 class="text-sm font-semibold text-vscode-text-light dark:text-vscode-text-dark opacity-80 mb-2">EXPLORER</h2>
-                <div class="space-y-2">
-                    <div class="text-vscode-text-light dark:text-vscode-text-dark hover:bg-black/5 dark:hover:bg-white/5 p-1 rounded cursor-pointer transition-colors duration-200">
-                        📄 About.md
-                    </div>
-                    <div class="text-vscode-text-light dark:text-vscode-text-dark hover:bg-black/5 dark:hover:bg-white/5 p-1 rounded cursor-pointer transition-colors duration-200">
-                        📄 Projects.md
-                    </div>
-                    <div class="text-vscode-text-light dark:text-vscode-text-dark hover:bg-black/5 dark:hover:bg-white/5 p-1 rounded cursor-pointer transition-colors duration-200">
-                        📄 Contact.md
-                    </div>
+                <h2 class="text-sm font-semibold text-vscode-text-light dark:text-vscode-text-dark opacity-80 mb-4 uppercase tracking-wide">Explorer</h2>
+                <div class="space-y-1">
+                    <button data-section="about" class="explorer-item w-full flex items-center text-left text-vscode-text-light dark:text-vscode-text-dark hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] p-1.5 rounded cursor-pointer transition-colors duration-200 group">
+                        <svg class="w-4 h-4 mr-2 text-[#787878] group-hover:text-vscode-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        About.md
+                    </button>
+                    <button data-section="projects" class="explorer-item w-full flex items-center text-left text-vscode-text-light dark:text-vscode-text-dark hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] p-1.5 rounded cursor-pointer transition-colors duration-200 group">
+                        <svg class="w-4 h-4 mr-2 text-[#787878] group-hover:text-vscode-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Projects.md
+                    </button>
+                    <button data-section="contact" class="explorer-item w-full flex items-center text-left text-vscode-text-light dark:text-vscode-text-dark hover:bg-[#e8e8e8] dark:hover:bg-[#37373d] p-1.5 rounded cursor-pointer transition-colors duration-200 group">
+                        <svg class="w-4 h-4 mr-2 text-[#787878] group-hover:text-vscode-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Contact.md
+                    </button>
                 </div>
             </div>
         </aside>
@@ -129,11 +361,11 @@
         <main class="flex-1 overflow-y-auto bg-vscode-bg-light dark:bg-vscode-bg-dark p-6 transition-colors duration-300">
             <!-- Tab Navigation -->
             <nav class="tab-nav mb-6 border-b border-vscode-border-light dark:border-vscode-border-dark transition-colors duration-300">
-                <button class="tab-button active px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-vscode-accent transition-colors duration-200" data-tab="about">About</button>
-                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-vscode-accent transition-colors duration-200" data-tab="skills">Skills</button>
-                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-vscode-accent transition-colors duration-200" data-tab="achievements">Achievements</button>
-                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-vscode-accent transition-colors duration-200" data-tab="projects">Projects</button>
-                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-vscode-accent transition-colors duration-200" data-tab="contact">Contact</button>
+                <button class="tab-button active px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-white dark:hover:text-[#d4d4d4] hover:bg-vscode-accent dark:hover:bg-[#094771] transition-all duration-200" data-tab="about">About</button>
+                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-white dark:hover:text-[#d4d4d4] hover:bg-vscode-accent dark:hover:bg-[#094771] transition-all duration-200" data-tab="skills">Skills</button>
+                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-white dark:hover:text-[#d4d4d4] hover:bg-vscode-accent dark:hover:bg-[#094771] transition-all duration-200" data-tab="achievements">Achievements</button>
+                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-white dark:hover:text-[#d4d4d4] hover:bg-vscode-accent dark:hover:bg-[#094771] transition-all duration-200" data-tab="projects">Projects</button>
+                <button class="tab-button px-6 py-3 text-vscode-text-light dark:text-vscode-text-dark hover:text-white dark:hover:text-[#d4d4d4] hover:bg-vscode-accent dark:hover:bg-[#094771] transition-all duration-200" data-tab="contact">Contact</button>
             </nav>
 
             <!-- Tab Content Sections -->
@@ -505,5 +737,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="menu.js"></script>
 </body>
 </html>

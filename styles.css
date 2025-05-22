@@ -1335,6 +1335,120 @@ nav a:hover {
 .footer-section:nth-child(2) { animation-delay: 0.15s; }
 .footer-section:nth-child(3) { animation-delay: 0.2s; }
 
+/* Menu System Styles */
+.menu-container {
+    position: relative;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 50;
+}
+
+.menu-item {
+    transition: background-color 0.2s ease;
+}
+
+/* Split View Styles */
+.split-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.split-view-pane {
+    border-left: 1px solid var(--vscode-border);
+    padding-left: 1rem;
+}
+
+/* Search Highlight Styles */
+.search-highlight {
+    transition: background-color 0.2s ease;
+}
+
+/* Terminal Styles */
+#terminal-panel {
+    font-family: 'Consolas', 'Monaco', monospace;
+    z-index: 40;
+}
+
+.terminal-line {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.terminal-input {
+    flex: 1;
+    min-width: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* Keyboard Shortcut Styles */
+.shortcut {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--vscode-bg);
+    border: 1px solid var(--vscode-border);
+    font-size: 0.875rem;
+    line-height: 1;
+}
+
+/* Animation for dropdowns */
+.menu-dropdown {
+    transform-origin: top;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-dropdown.hidden {
+    transform: scaleY(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animation for terminal */
+#terminal-panel {
+    transform-origin: bottom;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#terminal-panel.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animation for modals */
+.modal {
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.modal.hidden .modal-content {
+    transform: scale(0.95);
+}
+
 
 
 
