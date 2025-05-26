@@ -827,7 +827,6 @@ document.addEventListener('DOMContentLoaded', () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
-
 // Copyright year update
 document.addEventListener('DOMContentLoaded', () => {
     const copyrightYear = document.getElementById('copyright-year');
@@ -835,3 +834,4 @@ document.addEventListener('DOMContentLoaded', () => {
         copyrightYear.textContent = new Date().getFullYear();
     }
 });
+
