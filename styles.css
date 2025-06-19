@@ -1449,6 +1449,151 @@ nav a:hover {
     transform: scale(0.95);
 }
 
+.skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 1.1rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+    background: var(--vscode-sidebar-bg);
+    color: var(--vscode-text);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+}
+
+.skill-pill:hover {
+    box-shadow: 0 4px 16px 0 rgba(0,122,204,0.10);
+    background: var(--vscode-selection);
+    color: var(--vscode-accent);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Enhanced Contact Card Styles */
+.contact-card {
+    background: var(--vscode-sidebar-bg);
+    border-radius: 1rem;
+    box-shadow: 0 6px 32px 0 rgba(0,0,0,0.10);
+    border: 1px solid var(--vscode-border);
+    padding: 2.5rem 2rem;
+    margin: 0 auto;
+    max-width: 32rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s;
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--vscode-accent);
+    margin-bottom: 1.5rem;
+}
+
+.contact-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--vscode-text);
+    background: transparent;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: color 0.2s, background 0.2s;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.contact-link:hover {
+    color: var(--vscode-accent);
+    background: var(--vscode-hover-bg);
+}
+
+.resume-btn {
+    border: 1.5px solid var(--vscode-accent);
+    color: var(--vscode-accent);
+    background: transparent;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.75rem 2rem;
+    margin-top: 1.5rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(0,122,204,0.06);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.resume-btn:hover {
+    background: var(--vscode-accent);
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(0,122,204,0.10);
+}
+
+@media (max-width: 640px) {
+    .contact-card {
+        padding: 1.5rem 0.5rem;
+        max-width: 100%;
+    }
+
+    .contact-link, .resume-btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.skills-glow-heading {
+  text-shadow: 0 0 8px #007acc88, 0 0 16px #1e90ff44;
+  position: relative;
+}
+.skills-glow-heading::after {
+  content: '';
+  display: block;
+  margin: 0.5rem auto 0 auto;
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #007acc 0%, #00bfff 100%);
+  opacity: 0.7;
+  filter: blur(1px);
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 5px 3px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: linear-gradient(90deg, #1e1e2f 60%, #23233a 100%);
+  color: #00bfff;
+  box-shadow: 0 1px 6px 0 rgba(0,191,255,0.08);
+  border: 1.5px solid #23233a;
+  transition: box-shadow 0.2s, border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+  cursor: default;
+}
+.skill-badge:hover {
+  box-shadow: 0 0 12px 2px #00bfff99, 0 2px 8px 0 rgba(0,191,255,0.13);
+  border-color: #00bfff;
+  color: #fff;
+  background: linear-gradient(90deg, #23233a 60%, #007acc 100%);
+  transform: scale(1.07);
+}
+
+@media (max-width: 600px) {
+  .skills-glow-heading {
+    font-size: 1.5rem;
+  }
+  .skill-badge {
+    font-size: 0.95rem;
+    padding: 5px 10px;
+    margin: 4px 2px;
+  }
+}
+
 
 
 
